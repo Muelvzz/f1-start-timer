@@ -1,0 +1,44 @@
+.lights-container {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.light-strip {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    max-width: 75px;
+    background-color: black;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.light {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: grey;
+    margin-bottom: 1rem;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#instruction, #credits {
+    font-size: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+#timer {
+    font-size: 4rem;
+}
+
+#credits > a {
+    color: grey;
+    text-decoration: none;
+}

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import Lights from './Lights'
-import Nav from './Nav'
 
 export default function App() {
   const [startLights, setStartLights] = useState(false)

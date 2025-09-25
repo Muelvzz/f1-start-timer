@@ -5,8 +5,21 @@ export default function Lights(props) {
   const [time, setTime] = useState(0)
   const [currentColumn, setCurrentColumn] = useState(-1)
   const [bestTime, setBestTime] = useState(0)
+  const timeFromLocalStorage = JSON.parse( localStorage.getItem("bestTime") )
   const COLUMNS = 5
   const ROWS = 4
+
+  useEffect(() => {
+    if (timeFromLocalStorage) {
+      setBestTime(timeFromLocalStorage)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (bestTime > 0) {
+      localStorage.setItem("bestTime", JSON.stringify(bestTime))
+    }
+  }, [bestTime])
 
   useEffect(() => {
     let interval
@@ -34,16 +47,14 @@ export default function Lights(props) {
       interval = setInterval(() => {
         setTime((prev) => prev + 10)
       }, 10)
-    } else if (!props.runTimer && time > 0) {
-      if (bestTime === 0) {
-        setBestTime(time)
-      } else if (time < bestTime) {
-        setBestTime(time)
-      }
-      setTime(0)
     } else {
-        setTime(0)
-    }
+      if (time > 0) {
+          if (bestTime === 0 || time < bestTime) {
+            setBestTime(time)
+          }
+          setTime(0)
+        }
+      }
     return () => clearInterval(interval)
   }, [props.runTimer])
 

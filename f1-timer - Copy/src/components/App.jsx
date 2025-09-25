@@ -16,8 +16,23 @@ export default function App() {
         }
       }
     }
+
+    const handlePointer = () => {
+      if (!startLights && !runTimer) {
+        setStartLights(true) 
+      } else if (runTimer) {
+        setRunTimer(false)
+        setStartLights(false)
+      }
+    }
+
     window.addEventListener("keydown", handleKey)
-    return () => window.removeEventListener("keydown", handleKey)
+    window.addEventListener("pointerdown", handlePointer)
+
+    return () => {
+      window.removeEventListener("keydown", handleKey),
+      window.removeEventListener("pointerdown", handlePointer)
+    }
   }, [startLights, runTimer])
 
   return (

@@ -9,18 +9,21 @@ export default function Lights(props) {
   const COLUMNS = 5
   const ROWS = 4
 
+  // handles an event to check what is the best time saved.
   useEffect(() => {
     if (timeFromLocalStorage) {
       setBestTime(timeFromLocalStorage)
     }
   }, [])
 
+  // handles an event if the saved best time on local storage was surpassed.
   useEffect(() => {
     if (bestTime > 0) {
       localStorage.setItem("bestTime", JSON.stringify(bestTime))
     }
   }, [bestTime])
 
+  // handles the countdown for the lights to switch into red.
   useEffect(() => {
     let interval
     if (props.startLights) {
@@ -41,6 +44,7 @@ export default function Lights(props) {
     return () => clearInterval(interval)
   }, [props.startLights])
 
+  // handles the timer which yu'll see in the game
   useEffect(() => {
     let interval
     if (props.runTimer) {

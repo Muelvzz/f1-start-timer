@@ -5,14 +5,13 @@ export default function App() {
   const [startLights, setStartLights] = useState(false)
   const [runTimer, setRunTimer] = useState(false)
 
-  // spacebar press handler
   useEffect(() => {
     const handleKey = (e) => {
       if (e.code === "Space") {
         if (!startLights && !runTimer) {
-          setStartLights(true)  // start lights sequence
+          setStartLights(true) 
         } else if (runTimer) {
-          setRunTimer(false)   // stop timer
+          setRunTimer(false)
           setStartLights(false)
         }
       }

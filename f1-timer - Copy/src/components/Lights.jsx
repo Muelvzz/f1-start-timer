@@ -34,13 +34,14 @@ export default function Lights(props) {
       interval = setInterval(() => {
         setTime((prev) => prev + 10)
       }, 10)
+    } else if (!props.runTimer && time > 0) {
+      if (bestTime === 0) {
+        setBestTime(time)
+      } else if (time < bestTime) {
+        setBestTime(time)
+      }
+      setTime(0)
     } else {
-        let timer = (time / 1000).toFixed(3)
-        if (timer != bestTime) {
-            setBestTime(timer)
-        } else if (timer < bestTime) {
-            setBestTime(timer)
-        }
         setTime(0)
     }
     return () => clearInterval(interval)
@@ -72,7 +73,7 @@ export default function Lights(props) {
         <u>Tap</u> or hit "<u>space</u>" to start, then <u>tap</u> or hit "<u>space</u>" again when the lights go out.
       </p>
       <h1 id="timer">{formattedTime}</h1>
-      <p id="credits">Personal Best: {bestTime}</p>
+      <p id="credits">Personal Best: {(bestTime / 1000).toFixed(3) }</p>
       <p id="credits">
         Created by <a href="https://github.com/Muelvzz">Muelvin Lopez</a>. Based from this{' '}
         <a href="https://f1-start.jakearchibald.com/">F1 Start Timer</a>
